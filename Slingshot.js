@@ -9,9 +9,12 @@ class SlingShot{
 
 
         this.pointB = pointB
-        this.sling = Constraint.create(options);
+        this.sling = constraint.create(options);
         this.polygon = bodyA
         World.add(world, this.sling, this.polygon);
+
+        polygon = Bodies.circle(50,200,20);
+  World.add(world,polygon);
     }
 
     fly(){
