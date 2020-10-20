@@ -8,6 +8,7 @@ var box;
 var polygon;
 var slingShot;
 var BaseClass;
+var Matter;
 
 
 function setup() {
@@ -39,8 +40,10 @@ function setup() {
   //Top
   box16 = new Box(390,155,30,40);
 
+  polygon = Bodies.circle(50,200,20);
+  World.add(world,polygon);
 
-  slingShot = new SlingShot(this.polygon,{x:100,y:200});
+ slingShot = new SlingShot(this.polygon,{x:100,y:200});
 
 }
 
@@ -64,4 +67,16 @@ function draw() {
   box14.display();
   box15.display();
   box16.display();
+
+  mouseDragged();
+  mouseReleased();
 }
+function mouseDragged() {
+
+  Matter.Body.setPosition(ball.body,{x:mouseX,y:mouseY})
+}
+function mouseReleased() {
+
+   ball.fly(null);
+}
+
