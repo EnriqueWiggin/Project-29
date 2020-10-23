@@ -5,17 +5,24 @@ const Constraint = Matter.Constraint;
 
 var engine, world;
 var box;
-var polygon;
+var ball;
 var slingShot;
-var BaseClass;
-var Matter;
+var polygon_img;
 
+function preload()
+{
+  polygon_img=loadImage("polygon.png");
+}
 
 function setup() {
   createCanvas(800,400);
-  createSprite(400, 200, 50, 50);
+ 
   engine = Engine.create();
   world = engine.world;
+  Engine.run(engine);
+  ground = new Ground();
+  stand1 = new Stand(390,300,250,10);
+  stand2 = new Stand(700,200,200,10);
 //level 1
   box1 = new Box(120,275,30,40);
   box2 = new Box(150,275,30,40);
@@ -43,7 +50,7 @@ function setup() {
   polygon = Bodies.circle(50,200,20);
   World.add(world,polygon);
 
- slingShot = new SlingShot(this.polygon,{x:100,y:200});
+ slingShot = new Slingshot(this.polygon,{x:100,y:200});
 
 }
 
@@ -54,29 +61,33 @@ function draw() {
   box1.display();
   box2.display();
   box3.display();
-  box4.diplay();
+  box4.display();
   box5.display();
-  box6.diaplay();
-  box7.diaplay();
+  box6.display();
+  box7.display();
   box8.display();
-  box9.diaplay();
-  box10.diplay();
-  box11,display();
-  box12.diaplay();
+  box9.display();
+  box10.display();
+  box11.display();
+  box12.display();
   box13.display();
   box14.display();
   box15.display();
   box16.display();
+  fill("gold");
+  imageMode(CENTER)
+  image(polygon_img ,polygon.position.x,polygon.position.y,40,40);
 
-  mouseDragged();
-  mouseReleased();
+  slingShot.display();
 }
 function mouseDragged() {
 
-  Matter.Body.setPosition(ball.body,{x:mouseX,y:mouseY})
+  Matter.Body.setPosition(polygon.body,{x:mouseX,y:mouseY})
 }
 function mouseReleased() {
 
-   ball.fly(null);
+   fly(); {
+      polygon(null)
+   }
 }
 
